@@ -6,5 +6,15 @@
 int main()
 {
 
+	int x = 23;
+
+	int even_bits, odd_bits, swap_bits;
+
+	even_bits = (x & 0xAA) >> 1;
+	odd_bits =  (x & 0x55) << 1;
+
+	swap_bits = even_bits | odd_bits;
+
+	printf("Number after swapping bits %d\n",swap_bits);
 
 }

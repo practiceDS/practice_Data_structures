@@ -1,17 +1,17 @@
 Questions:-
 
-1- Count number of 1's in the binary representation of a number.
-2- Swap all odd and even bits.
-3- Binary representation of a given number.
-4- Rotate bits of a given number.
-5- Count number of bits to be flipped to convert A to B.
-6- Check whether a given number is even or odd without using any operator(+,-,*,%,/).
-7- Find the element that appears once in an array where every other element appears twice.
-8- Swap two nibbles in a byte.
-9- WAP to check whether a system is little endian or big endian.
-10- WAP to revers all the bits of a 32 bit integer.
-11- WAP to set a bit.
-12- WAP to unset a bit.
-13- WAP to toggle a bit.
+-> Count number of 1's in the binary representation of a number.
+-> Swap all odd and even bits.
+-> Binary representation of a given number using iterative approach.
+-> Binary representation of a given number using recursive approach.
+-> Count number of 1's in the binary representation of a number using bitwise operators.
+-> Rotate bits of a given number.
+-> Count number of bits to be flipped to convert A to B.
+-> Check whether a given number is even or odd without using any operator(+,-,*,%,/).
+-> Find the element that appears once in an array where every other element appears twice.
+-> Swap two nibbles in a byte.
+-> WAP to check whether a system is little endian or big endian.
+-> WAP to reverse all the bits of a 32 bit integer.
+-> WAP to set, clear and toggle a bit 
 
 
