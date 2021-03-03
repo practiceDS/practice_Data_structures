@@ -1,0 +1,17 @@
+-----------------------------------------------------------------------------------------
+			LOOBACK ADDRESS
+----------------------------------------------------------------------------------------
+
+The IP address range 127.0.0.0 – 127.255.255.255 is reserved for loopback. Loopback IP address is managed entirely by and within the operating system. These addresses enable the Server and Client processes on a single system to communicate with each other. When a process creates a packet with destination address as loopback address, the operating system loops it back to itself without having any interference of NIC.
+
+Data sent on loopback is forwarded by the operating system to a virtual network interface within operating system. This address is mostly used for testing purposes like client-server architecture on a single machine.
+
+For example, if a host machine can successfully ping 127.0.0.2 or any IP from loopback range, implies that the TCP/IP software stack on the machine is successfully loaded and working.
+
+
+-----------------------------------------------------------------------------------------
+	Difference between Ethernet port and Loopback
+-----------------------------------------------------------------------------------------
+
+
+

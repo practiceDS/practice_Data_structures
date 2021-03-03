@@ -1,0 +1,647 @@
+
+------------------------------------------------------------------
+	Pointer Expressions and Pointer Arithmetic
+------------------------------------------------------------------
+
+A limited set of arithmetic operations can be performed on pointers. A pointer may be:
+
+->incremented ( ++ )
+->decremented ( — )
+->an integer may be added to a pointer ( + or += )
+->an integer may be subtracted from a pointer ( – or -= )
+
+Pointer arithmetic is meaningless unless performed on an array.
+Note : Pointers contain addresses. Adding two addresses makes no sense, because there is no idea what it would point to. Subtracting two addresses lets you compute the offset between these two addresses.
+
+// C++ program to illustrate Pointer Arithmetic 
+// in C/C++ 
+#include <bits/stdc++.h> 
+  
+// Driver program 
+int main() 
+{ 
+    // Declare an array 
+    int v[3] = {10, 100, 200}; 
+  
+    // Declare pointer variable 
+    int *ptr; 
+  
+    // Assign the address of v[0] to ptr 
+    ptr = v; 
+  
+    for (int i = 0; i < 3; i++) 
+    { 
+        printf("Value of *ptr = %d\n", *ptr); 
+        printf("Value of ptr = %p\n\n", ptr); 
+  
+        // Increment pointer ptr by 1 
+        ptr++; 
+    } 
+}
+
+Output:Value of *ptr = 10
+Value of ptr = 0x7ffcae30c710
+
+Value of *ptr = 100
+Value of ptr = 0x7ffcae30c714
+
+Value of *ptr = 200
+Value of ptr = 0x7ffcae30c718
+
+
+------------------------------------------------------------------
+	Array Name as Pointers
+------------------------------------------------------------------
+
+An array name acts like a pointer constant. The value of this pointer constant is the address of the first element.
+For example, if we have an array named val then val and &val[0] can be used interchangeably.
+
+
+// C++ program to illustrate Array Name as Pointers in C++ 
+#include <bits/stdc++.h> 
+using namespace std; 
+  
+void geeks() 
+{ 
+    // Declare an array 
+    int val[3] = { 5, 10, 15}; 
+  
+    // Declare pointer variable 
+    int *ptr; 
+  
+    // Assign address of val[0] to ptr. 
+    // We can use ptr=&val[0];(both are same) 
+    ptr = val ; 
+    cout << "Elements of the array are: "; 
+    cout << ptr[0] << " " << ptr[1] << " " << ptr[2]; 
+  
+    return; 
+} 
+  
+// Driver program 
+int main() 
+{ 
+    geeks(); 
+    return 0; 
+} 
+Output:
+Elements of the array are: 5 10 15
+
+
+------------------------------------------------------------------
+	Pointers and Multidimensional Arrays
+------------------------------------------------------------------
+
+Consider pointer notation for the two-dimensional numeric arrays. consider the following declaration
+
+int nums[2][3]  =  { {16, 18, 20}, {25, 26, 27} };
+In general, nums[i][j] is equivalent to *(*(nums+i)+j)
+
+Pointer Notation	Array Notation	Value
+*(*nums)		nums[0][0]	16
+*(*nums + 1)		nums[0][1]	18
+*(*nums + 2)		nums[0][2]	20
+*(*(nums + 1))		nums[1][0]	25
+*(*(nums + 1) + 1)	nums[1][1]	26
+*(*(nums + 1) + 2)	nums[1][2]	27
+
+
+------------------------------------------------------------------
+	Double Pointer (Pointer to Pointer) in C
+------------------------------------------------------------------
+
+We already know that a pointer points to a location in memory and thus used to store the address of variables. So, when we define a pointer to pointer. The first pointer is used to store the address of the variable. And the second pointer is used to store the address of the first pointer. That is why they are also known as double pointers.
+
+How to declare a pointer to pointer in C?
+Declaring Pointer to Pointer is similar to declaring pointer in C. The difference is we have to place an additional ‘*’ before the name of pointer.
+Syntax:
+
+int **ptr;    // declaring double pointers
+
+For eg:-
+#include <stdio.h> 
+  
+// C program to demonstrate pointer to pointer 
+int main() 
+{ 
+    int var = 789; 
+  
+    // pointer for var 
+    int *ptr2; 
+  
+    // double pointer for ptr2 
+    int **ptr1; 
+  
+    // storing address of var in ptr2 
+    ptr2 = &var; 
+      
+    // Storing address of ptr2 in ptr1 
+    ptr1 = &ptr2; 
+      
+    // Displaying value of var using 
+    // both single and double pointers 
+    printf("Value of var = %d\n", var ); 
+    printf("Value of var using single pointer = %d\n", *ptr2 ); 
+    printf("Value of var using double pointer = %d\n", **ptr1); 
+    
+  return 0; 
+}  
+Output:
+
+Value of var = 789
+Value of var using single pointer = 789
+Value of var using double pointer = 789
+
+
+--->Array parameters treated as pointers because of efficiency. It is inefficient to copy the array data in terms of both memory and time; and most of the times, when we pass an array our intention is to just tell the array we interested in, not to create a copy of the array.
+
+
+------------------------------------------------------------------
+	Dangling Pointers
+------------------------------------------------------------------
+A pointer pointing to a memory location that has been deleted (or freed) is called dangling pointer. There are three different ways where Pointer acts as dangling pointer
+
+De-allocation of memory
+Example :-
+// Deallocating a memory pointed by ptr causes 
+// dangling pointer 
+#include <stdlib.h> 
+#include <stdio.h> 
+int main() 
+{ 
+    int *ptr = (int *)malloc(sizeof(int)); 
+  
+    // After below free call, ptr becomes a  
+    // dangling pointer 
+    free(ptr);  
+      
+    // No more a dangling pointer 
+    ptr = NULL; 
+} 
+
+Function Call
+
+Example :-
+// The pointer pointing to local variable becomes 
+// dangling when local variable is not static. 
+#include<stdio.h> 
+  
+int *fun() 
+{ 
+    // x is local variable and goes out of 
+    // scope after an execution of fun() is 
+    // over. 
+    int x = 5; 
+  
+    return &x; 
+} 
+  
+// Driver Code 
+int main() 
+{ 
+    int *p = fun(); 
+    fflush(stdin); 
+  
+    // p points to something which is not 
+    // valid anymore 
+    printf("%d", *p); 
+    return 0; 
+} 
+Output:
+
+A garbage Address
+The above problem doesn’t appear (or p doesn’t become dangling) if x is a static variable.
+
+Example :-
+// The pointer pointing to local variable doesn't 
+// become dangling when local variable is static. 
+#include<stdio.h> 
+  
+int *fun() 
+{ 
+    // x now has scope throughout the program 
+    static int x = 5; 
+  
+    return &x; 
+} 
+  
+int main() 
+{ 
+    int *p = fun(); 
+    fflush(stdin); 
+      
+    // Not a dangling pointer as it points 
+    // to static variable. 
+    printf("%d",*p); 
+} 
+Output:
+
+ 5
+
+Variable goes out of scope:
+void main()
+{
+   int *ptr;
+   .....
+   .....
+   {
+       int ch;
+       ptr = &ch;
+   } 
+   .....   
+   // Here ptr is dangling pointer
+}
+
+
+------------------------------------------------------------------
+	Void pointer
+------------------------------------------------------------------
+Void pointer is a specific pointer type – void * – a pointer that points to some data location in storage, which doesn’t have any specific type. Void refers to the type. Basically the type of data that it points to is can be any. If we assign address of char data type to void pointer it will become char Pointer, if int data type then int pointer and so on. Any pointer type is convertible to a void pointer hence it can point to any value.
+Important Points
+
+->void pointers cannot be dereferenced. It can however be done using typecasting the void pointer
+->Pointer arithmetic is not possible on pointers of void due to lack of concrete value and thus size.
+
+
+------------------------------------------------------------------
+	NULL Pointer
+------------------------------------------------------------------
+
+NULL Pointer is a pointer which is pointing to nothing. In case, if we don’t have address to be assigned to a pointer, then we can simply use NULL.
+
+Important Points
+
+->NULL vs Uninitialized pointer – An uninitialized pointer stores an undefined value. A null pointer stores a defined value, but one that is defined by the environment to not be a valid address for any member or object.
+
+->NULL vs Void Pointer – Null pointer is a value, while void pointer is a type
+
+
+------------------------------------------------------------------
+	Wild pointer
+------------------------------------------------------------------
+
+A pointer which has not been initialized to anything (not even NULL) is known as wild pointer. The pointer may be initialized to a non-NULL garbage value that may not be a valid address.
+
+
+------------------------------------------------------------------
+	An Uncommon representation of array elements
+------------------------------------------------------------------
+
+Consider the below program.
+
+int main( ) 
+{ 
+  int arr[2] = {0,1}; 
+  printf("First Element = %d\n",arr[0]); 
+  getchar(); 
+  return 0; 
+} 
+Pretty Simple program.. huh… Output will be 0.
+
+Now if you replace arr[0] with 0[arr], the output would be same. Because compiler converts the array operation in pointers before accessing the array elements.
+
+e.g. arr[0] would be *(arr + 0) and therefore 0[arr] would be *(0 + arr) and you know that both *(arr + 0) and *(0 + arr) are same.
+
+
+------------------------------------------------------------------
+	How to declare a pointer to a function?
+------------------------------------------------------------------
+
+int (*foo)(int); --> correct way to declare
+
+int *foo(int); --> Incorrect way.
+C operator precedence also plays role here ..so in this case, operator () will take priority over operator *. And the above declaration will mean – a function foo with one argument of int type and return value of int * i.e. integer pointer.
+
+
+------------------------------------------------------------------
+	Pointer vs Array in C
+------------------------------------------------------------------
+
+Most of the time, pointer and array accesses can be treated as acting the same, the major exceptions being:
+
+1) the sizeof operator
+ 	->sizeof(array) returns the amount of memory used by all elements in array
+ 	->sizeof(pointer) only returns the amount of memory used by the pointer variable itself
+
+2) the & operator
+ 	->&array is an alias for &array[0] and returns the address of the first element in array
+ 	->&pointer returns the address of pointer
+
+3) a string literal initialization of a character array
+	->char array[] = “abc” sets the first four elements in array to ‘a’, ‘b’, ‘c’, and ‘\0’
+	->char *pointer = “abc” sets pointer to the address of the “abc” string (which may be stored in read-only memory and thus unchangeable)
+
+4) Pointer variable can be assigned a value whereas array variable cannot be.
+
+
+------------------------------------------------------------------
+	Function Pointers
+------------------------------------------------------------------
+
+In C, like normal data pointers (int *, char *, etc), we can have pointers to functions. Following is a simple example that shows declaration and function call using function pointer.
+
+#include <stdio.h> 
+// A normal function with an int parameter 
+// and void return type 
+void fun(int a) 
+{ 
+    printf("Value of a is %d\n", a); 
+} 
+  
+int main() 
+{ 
+    // fun_ptr is a pointer to function fun()  
+    void (*fun_ptr)(int) = &fun; 
+  
+    /* The above line is equivalent of following two 
+       void (*fun_ptr)(int); 
+       fun_ptr = &fun;  
+    */
+  
+    // Invoking fun() using fun_ptr 
+    (*fun_ptr)(10); 
+  
+    return 0; 
+} 
+Output:
+
+Value of a is 10
+
+----->Following are some interesting facts about function pointers :-
+
+1) Unlike normal pointers, a function pointer points to code, not data. Typically a function pointer stores the start of executable code.
+
+2) Unlike normal pointers, we do not allocate de-allocate memory using function pointers.
+
+3) A function’s name can also be used to get functions’ address. For example, in the below program, we have removed address operator ‘&’ in assignment. We have also changed function call by removing *, the program still works.
+
+#include <stdio.h> 
+// A normal function with an int parameter 
+// and void return type 
+void fun(int a) 
+{ 
+    printf("Value of a is %d\n", a); 
+} 
+  
+int main() 
+{  
+    void (*fun_ptr)(int) = fun;  // & removed 
+  
+    fun_ptr(10);  // * removed 
+  
+    return 0; 
+}
+Output:
+
+Value of a is 10
+
+4) Like normal pointers, we can have an array of function pointers. Below example in point 5 shows syntax for array of pointers.
+
+5) Function pointer can be used in place of switch case. For example, in below program, user is asked for a choice between 0 and 2 to do different tasks.
+
+#include <stdio.h> 
+void add(int a, int b) 
+{ 
+    printf("Addition is %d\n", a+b); 
+} 
+void subtract(int a, int b) 
+{ 
+    printf("Subtraction is %d\n", a-b); 
+} 
+void multiply(int a, int b) 
+{ 
+    printf("Multiplication is %d\n", a*b); 
+} 
+  
+int main() 
+{ 
+    // fun_ptr_arr is an array of function pointers 
+    void (*fun_ptr_arr[])(int, int) = {add, subtract, multiply}; 
+    unsigned int ch, a = 15, b = 10; 
+  
+    printf("Enter Choice: 0 for add, 1 for subtract and 2 "
+            "for multiply\n"); 
+    scanf("%d", &ch); 
+  
+    if (ch > 2) return 0; 
+  
+    (*fun_ptr_arr[ch])(a, b); 
+  
+    return 0; 
+}
+
+Output :- 
+Enter Choice: 0 for add, 1 for subtract and 2 for multiply
+2
+Multiplication is 150 
+
+6) Like normal data pointers, a function pointer can be passed as an argument and can also be returned from a function.
+For example, consider the following C program where wrapper() receives a void fun() as parameter and calls the passed function.
+
+
+// A simple C program to show function pointers as parameter 
+#include <stdio.h> 
+  
+// Two simple functions 
+void fun1() { printf("Fun1\n"); } 
+void fun2() { printf("Fun2\n"); } 
+  
+// A function that receives a simple function 
+// as parameter and calls the function 
+void wrapper(void (*fun)()) 
+{ 
+    fun(); 
+} 
+  
+int main() 
+{ 
+    wrapper(fun1); 
+    wrapper(fun2); 
+    return 0; 
+}
+
+
+
+------------------------------------------------------------------------------------
+	Difference between const char *p, char * const p and const char * const p
+------------------------------------------------------------------------------------
+
+1) const char *ptr : This is a pointer to a constant character. You cannot change the value pointed by ptr, but you can change the pointer itself. “const char *” is a (non-const) pointer to a const char.
+
+// C program to illustrate  
+// char const *p 
+#include<stdio.h> 
+#include<stdlib.h> 
+  
+int main() 
+{ 
+    char a ='A', b ='B'; 
+    const char *ptr = &a; 
+      
+    //*ptr = b; illegal statement (assignment of read-only location *ptr) 
+      
+    // ptr can be changed 
+    printf( "value pointed to by ptr: %c\n", *ptr); 
+    ptr = &b; 
+    printf( "value pointed to by ptr: %c\n", *ptr); 
+} 
+
+Output:
+
+value pointed to by ptr:A
+value pointed to by ptr:B
+
+NOTE: There is no difference between const char *p and char const *p as both are pointer to a const char and position of ‘*'(asterik) is also same.
+
+2) char *const ptr : This is a constant pointer to non-constant character. You cannot change the pointer p, but can change the value pointed by ptr.
+
+// C program to illustrate  
+// char* const p 
+#include<stdio.h> 
+#include<stdlib.h> 
+  
+int main() 
+{ 
+    char a ='A', b ='B'; 
+    char *const ptr = &a; 
+    printf( "Value pointed to by ptr: %c\n", *ptr); 
+    printf( "Address ptr is pointing to: %d\n\n", ptr); 
+  
+    //ptr = &b; illegal statement (assignment of read-only variable ptr) 
+  
+    // changing the value at the address ptr is pointing to 
+    *ptr = b;  
+    printf( "Value pointed to by ptr: %c\n", *ptr); 
+    printf( "Address ptr is pointing to: %d\n", ptr); 
+} 
+Output:
+
+Value pointed to by ptr: A
+Address ptr is pointing to: -1443150762
+
+Value pointed to by ptr: B
+Address ptr is pointing to: -1443150762
+
+NOTE: Pointer always points to same address, only the value at the location is changed. 
+
+3) const char * const ptr : This is a constant pointer to constant character. You can neither change the value pointed by ptr nor the pointer ptr.
+
+// C program to illustrate  
+//const char * const ptr  
+#include<stdio.h> 
+#include<stdlib.h> 
+  
+int main() 
+{ 
+    char a ='A', b ='B'; 
+    const char *const ptr = &a; 
+      
+    printf( "Value pointed to by ptr: %c\n", *ptr); 
+    printf( "Address ptr is pointing to: %d\n\n", ptr); 
+  
+    // ptr = &b; illegal statement (assignment of read-only variable ptr) 
+    // *ptr = b; illegal statement (assignment of read-only location *ptr) 
+  
+} 
+Output:
+
+Value pointed to by ptr: A
+Address ptr is pointing to: -255095482
+
+NOTE: char const * const ptr is same as const char *const ptr. 
+
+
+------------------------------------------------------------------------------------
+	Pointer to an Array | Array Pointer
+------------------------------------------------------------------------------------
+
+Consider the following program:
+
+
+#include<stdio.h> 
+  
+int main() 
+{ 
+  int arr[5] = { 1, 2, 3, 4, 5 }; 
+  int *ptr = arr; 
+  
+  printf("%p\n", ptr); 
+  return 0; 
+} 
+In this program, we have a pointer ptr that points to the 0th element of the array. Similarly, we can also declare a pointer that can point to whole array instead of only one element of the array. This pointer is useful when talking about multidimensional arrays.
+Syntax:
+
+data_type (*var_name)[size_of_array];
+Example:
+
+
+
+int (*ptr)[10];
+Here ptr is pointer that can point to an array of 10 integers. Since subscript have higher precedence than indirection, it is necessary to enclose the indirection operator and pointer name inside parentheses. Here the type of ptr is ‘pointer to an array of 10 integers’.
+Note : The pointer that points to the 0th element of array and the pointer that points to the whole array are totally different. The following program shows this:
+
+// C program to understand difference between  
+// pointer to an integer and pointer to an 
+// array of integers.  
+#include<stdio.h> 
+  
+int main() 
+{ 
+    // Pointer to an integer 
+    int *p;  
+      
+    // Pointer to an array of 5 integers 
+    int (*ptr)[5];  
+    int arr[5]; 
+      
+    // Points to 0th element of the arr. 
+    p = arr; 
+      
+    // Points to the whole array arr. 
+    ptr = &arr;  
+      
+    printf("p = %p, ptr = %p\n", p, ptr); 
+      
+    p++;  
+    ptr++; 
+      
+    printf("p = %p, ptr = %p\n", p, ptr); 
+      
+    return 0; 
+} 
+
+Output:
+p = 0x7fff4f32fd50, ptr = 0x7fff4f32fd50
+p = 0x7fff4f32fd54, ptr = 0x7fff4f32fd64
+p: is pointer to 0th element of the array arr, while ptr is a pointer that points to the whole array arr.
+
+The base type of p is int while base type of ptr is ‘an array of 5 integers’.
+We know that the pointer arithmetic is performed relative to the base size, so if we write ptr++, then the pointer ptr will be shifted forward by 20 bytes.
+
+
+/ C program to illustrate sizes of 
+// pointer of array 
+#include<stdio.h> 
+  
+int main() 
+{ 
+    int arr[] = { 3, 5, 6, 7, 9 }; 
+    int *p = arr; 
+    int (*ptr)[5] = &arr; 
+      
+    printf("p = %p, ptr = %p\n", p, ptr); 
+    printf("*p = %d, *ptr = %p\n", *p, *ptr); 
+      
+    printf("sizeof(p) = %lu, sizeof(*p) = %lu\n", 
+                          sizeof(p), sizeof(*p)); 
+    printf("sizeof(ptr) = %lu, sizeof(*ptr) = %lu\n",  
+                        sizeof(ptr), sizeof(*ptr)); 
+    return 0; 
+} 
+
+Output:
+p = 0x7ffde1ee5010, ptr = 0x7ffde1ee5010
+*p = 3, *ptr = 0x7ffde1ee5010
+sizeof(p) = 8, sizeof(*p) = 4
+sizeof(ptr) = 8, sizeof(*ptr) = 20
+

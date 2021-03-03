@@ -1,0 +1,94 @@
+-------------------------------------
+	Input and Output 
+------------------------------------
+
+-->In C, scanf returns the no. of inputs it has successfully read
+
+Predict the output of below program:
+
+#include <stdio.h>
+ 
+int main()
+{
+    printf("%c ", 5["GeeksQuiz"]);
+    return 0;
+}
+
+#include <stdio.h>
+int main()
+{
+    printf("%c ", "GeeksQuiz"[5]);
+    return 0;
+}
+
+
+-->The crux of the program lies in the expression: 5["GeeksQuiz"]/"GeeksQuiz"[5] This expression is broken down by the compiler as: *(5 + "GeeksQuiz")/ *(“GeeksQuiz” + 5). Adding 5 to the base address of the string increments the pointer(lets say a pointer was pointing to the start(G) of the string initially) to point to Q. Applying value-of operator gives the character at the location pointed to by the pointer i.e. Q.
+
+
+-->gets() can read a string with spaces but a normal scanf() with %s can not.
+
+--> char *str  =  "GfG";
+In the above line “GfG” is stored in a shared read-only location, but pointer str is stored in a read-write memory. You can change str to point something else but cannot change value at present str. So this kind of string should only be used when we don’t want to modify string at a later stage in the program.
+
+-->va_start must be called before accessing variable argument list 
+   va_start(ap, arg_count);
+
+   Now arguments can be accessed one by one using va_arg macro
+   Initialize min as first argument in list
+   min = va_arg(ap, int);
+
+   va_end should be executed before the function returns whenever
+   va_end(ap);
+
+Eg :-
+
+What is output of following C - Code?
+#include <stdio.h>
+#include <stdarg.h>
+int fun(int n, ...)
+{
+    int i, j = 1, val = 0;
+    va_list p;
+    va_start(p, n);
+    for (; j < n; ++j)
+    {
+        i = va_arg(p, int);
+        val += i;
+    }
+    va_end(p);
+    return val;
+}
+int main()
+{
+    printf("%dn", fun(4, 1, 2, 3));
+    return 0;
+}
+
+Ans :- 6
+Note :- The function receives variable number of arguments as there are three dots after first argument.   The firs argument is count of all arguments including first.  The function mainly returns sum of all remaining arguments.
+
+-->
+Consider the following C program:
+#include <stdio.h>
+void fun1(char *s1, char *s2) {
+  char *temp;
+  temp = s1;
+  s1 = s2;
+  s2 = temp;
+}
+void fun2(char **s1, char **s2) {
+  char *temp;
+  temp = *s1;
+  *s1 = *s2;
+  *s2 = temp;
+}
+int main() {
+  char *str1 = "Hi", *str2 = "Bye";
+  fun1(str1, str2);
+  printf("%s %s", str1, str2);
+  fun2(&str1, &str2);
+  printf("%s %s", str1, str2);
+  return 0;
+}
+
+Ans :- fun1(char *s1, char *s2) Above function scope is local, so the value changed here won't affect actual parameters. SO the values will be 'Hi Bye'.   fun2(char **s1, char **s2) In this function value is pointer to pointer, so it changes pointer of the actual value. So values will be 'Bye Hi' Answer is 'Hi Bye Bye Hi'   Option (A) is correct.
