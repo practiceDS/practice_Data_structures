@@ -1,3 +1,10 @@
 Questions:-
 
+-> What are threads
+-> Difference between thread and process.
+-> WAP to create a thread to call a single function.
+-> WAP to create multiple threads using semaphores and mutex.
+-> How to commpile a multithreaded Application.
+-> Cancelling a thread.
+-> Thread Attributes.
 
