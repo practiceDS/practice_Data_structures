@@ -1,0 +1,103 @@
+
+--> Strings in Python are immutables , you can not change it after assignment.
+--> By giving negative number we can print string in reverse order.
+--> Lists are used to store multiple items in a single variable.,List are mutable, defined by []
+--> Tuples are similar to list with a exception that, it cannot be modified, i.e they are immutable ,defined by ()
+--> tuples are faster than list 
+--> Set are the collection of unique elements ,defined by { }
+--> In set we cannot fetch the elements through index.
+--> Difference between sets and list are, sets will not maintain sequence and does not have duplicate values.
+
+--> Dictionary store elements in key value pair.
+	data = { 1:"Kushagra", 2: "Divya"}
+
+--> To print address of any variables
+	num = 8
+	id(num)
+
+--> In python we dont have any concept of constant.
+--> Python is memory efficient, i.e if two variables point to each other, they will have the same address.
+
+	a=10
+	b=a
+	id(a) will be equal to id(b)
+
+--> type function is used to check the type of a variable
+	type(a)
+
+--> Data types :-
+	-> None
+	-> Numeric -- int, float,complex,bool
+	-> List
+	-> Tuple
+	-> Set
+	-> String
+	-> Range
+	-> Dictionary
+
+
+--> coverting int to float to complex using the below functions.
+     a = 10;
+     b = float(a)
+     c = complex(a,b)
+
+--> input() function is userd to take input from user, and this return type string
+
+--> Array vs List or tuple :-
+	->Array has all the variable of same type.
+	->In python array doesnt have fixed size, we can increase, append, insert various methods in array.
+
+--> Declaration of Array:-
+	arr= array('i',[1,2,3])
+
+--> Functions :-
+	Int and strings arguments are immutable.
+	list are mutabled within function calls
+
+--> Types of arguments :-
+	->Position
+	->Keyword
+	->Default
+	->varible length
+
+--> We can change global variable in function with a keyword global
+
+--> Functions without names are lambda functions or Anonymous functions.
+	f = lambda a : a * a    
+	
+	f(5)
+
+--> Decorators are very powerful and useful tool in Python since it allows programmers to modify the behavior of function or class.
+
+--> Self in used to pint to the current instance of the object
+
+--> Namespace in a area where you create and store object/variable.
+	->Class namespace.
+	->Object/INstance namespace
+
+--> Class variable :- Variable which are declared outside __init__ are class variables and they share between the objects.
+	eg: - if you change the class variable through one object it will be reflected in others as well
+
+--> Instance Variable :- Variable declared inside __init_ are instance variable.
+
+--> Types of Methods :-
+	->Instance method :- This has to do with the instance variables.
+	->Class method :- This has to do with the class variables.
+	->Static method :- If we need to perform some operation apart from instance and class
+
+
+Inner Class :- A class defined in another class is known as inner class or nested class. If an object is created using child class means inner class then the object can also be used by parent class or root class. A parent class can have one or more inner class but generally inner classes are avoided.
+
+--> Polymorphism :- One thing with multiple forms.
+	->Duck typing
+	->Operator overloading
+	->Method overloading
+	->Method overriding
+
+---> The yield statement suspends function’s execution and sends a value back to the caller, but retains enough state to enable function to resume where it is left off. When resumed, the function continues execution immediately after the last yield run. This allows its code to produce a series of values over time, rather than computing them at once and sending them back like a list.
+
+
+--> Generators :- A generator-function is defined like a normal function, but whenever it needs to generate a value, it does so with the yield keyword rather than return. If the body of a def contains yield, the function automatically becomes a generator function.
+
+
+--> Incase of try and except, finally block will execute in both cases

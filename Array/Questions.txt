@@ -1,3 +1,17 @@
 Questions:-
 
+-> WAP to check if given array has 2 elements whose sum is equal to the given value.
+-> Algorithm to find two repeating numbers in a given array.
+-> Algorithm to find two repeating numbers in a given array using hashing.
+-> Algorithm to find two repeating numbers in a given array in O(n) and constant space complexity.
+-> WAP to find missing number in integer array of 1 to n-1 .
+-> WAP to print spiral matrix.
+-> Find the number occuring odd number of times in a given array.
+-> Algorithm to reverse an array.
+-> Algorithm to rotate array of size 'n' by d.
+-> Segregate 0's and 1's in an array.
+-> WAP to print maximum occuring element in an array.
+-> WAP to sort an array.
+-> WAP to remove duplicates from sorted array.
+-> Calculate minimum amoung the peak value.
 

@@ -11,7 +11,8 @@ A limited set of arithmetic operations can be performed on pointers. A pointer m
 ->an integer may be subtracted from a pointer ( – or -= )
 
 Pointer arithmetic is meaningless unless performed on an array.
-Note : Pointers contain addresses. Adding two addresses makes no sense, because there is no idea what it would point to. Subtracting two addresses lets you compute the offset between these two addresses.
+Note : Pointers contain addresses. Adding two addresses makes no sense, because there is no idea what it would point to.
+Subtracting two addresses lets you compute the offset between these two addresses.
 
 // C++ program to illustrate Pointer Arithmetic 
 // in C/C++ 
