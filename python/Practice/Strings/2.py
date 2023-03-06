@@ -1,0 +1,7 @@
+print("Enter Name")
+name = input()
+print("Enter Date")
+date = input()
+print("'''  Dear<|",name,"|>,")
+print("You are selected!")
+print("<|",date,"|> '''")
