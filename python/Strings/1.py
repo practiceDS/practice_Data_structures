@@ -4,8 +4,7 @@ import sys
 string = str(sys.argv[1])
 print(string)
 
-half = len(string)/2
-
+half = int(len(string)/2)
 if (half % 2 == 1):
     first_part = string[half:]
     second_part = string[:half]

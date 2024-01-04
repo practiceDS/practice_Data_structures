@@ -1,0 +1,7 @@
+PROBELM-STATEMENT 1 :---------
+
+Create a class FreqMapper, this class takes in one function that 
+	-takes in the string as an argument
+	-returns a dictionary where all characters are mapped with their frequencies in the string
+	-handle all possible edge cases 
+Create all possible test cases for the above functionality.

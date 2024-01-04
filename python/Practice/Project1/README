@@ -1,0 +1,9 @@
+# We all had Played Snake Water Gun Game in our childhood. If you haven'nt
+google the rules of the game. Write a python program capable of playing this
+game with the user and enter one random number from computer.
+
+Rules:
+Snake vs. Water: Snake drinks the water hence wins.
+Water vs. Gun: The gun will drown in water, hence a point for water
+Gun vs. Snake: Gun will kill the snake and win.
+
