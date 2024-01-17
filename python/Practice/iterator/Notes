@@ -1,0 +1,4 @@
+->Iterator is an object which contains countable number of values and is used to iterate the iterable objects like list,tuple,sets etc.
+->Iterator are used to convert other iterable objects into iterator using iter()
+->Iterator uses iter() and next() functions.
+->Every iterator is not a generator
