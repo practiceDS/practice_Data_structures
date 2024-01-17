@@ -1,0 +1,3 @@
+Python decorators are used to modify or extend the behaviour of the existing function without changing its source code.The decorators function takes function as an argument
+and return a new function after changing the behaviour of the existing function.
+
