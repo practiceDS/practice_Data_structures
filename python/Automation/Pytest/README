@@ -1,0 +1,44 @@
+Pytest - Its a testing framework for python, which will be required to write
+small and scalable test which can be used to test complex functionalities.
+
+-> To Group your test case in pytest, we can do it by marking them with a
+decorator mentioned below:-
+	@pytest.mark."your tagname"
+
+	For executing command -> pytest -m "your tagname"
+	->pytest.ini file is used to mark your custom markers, then only you can use them in your project to run the test
+	    with custom markers.
+
+-> There are two types of merkers available in pytest.
+	-> Custom marker: Which we had discussed in the above point.
+	-> Built In marker:- There are predined marker for eg :
+	@pytest.mark.skip - this will skip this paricular test case.
+	@pytest.mark.xfail - mark the test as expected failure.
+
+	Note - Check all the built in markers using the command - pytest
+	--markers
+
+
+->Pytest fixtures are a powerful tool to which allows you to setup and provide
+baseline for your test. It acts as a setup or teardown before and after your
+test gets executed.
+->Fixtures Scope
+
+    function: the default scope, the fixture is destroyed at the end of the test.
+    class: the fixture is destroyed during teardown of the last test in the class.
+    module: the fixture is destroyed during teardown of the last test in the module.
+    package: the fixture is destroyed during teardown of the last test in the package.
+    session: the fixture is destroyed at the end of the test session.
+
+-> Conftest.py file is used to write the common functionalities used in all the
+test, so that we dont need to explitely add them in each test file, this file
+will be executed at the very begining.
+
+-> Parameterized fixtures is helpful in running the same test again and again with different parameters given in the
+parameterized fixture. This can be done via,
+
+->pytest.fixture() allows one to parametrize fixture functions.
+->@pytest.mark.parametrize allows one to define multiple sets of arguments and fixtures at the test function or class.
+->pytest_generate_tests allows one to define custom parametrization schemes or extensions.
+
+
