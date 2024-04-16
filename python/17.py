@@ -22,14 +22,15 @@ class B(object):
         print("This is feature 2")
 
 
-class C(A,B):
+class C(B,A):
 
     def __init__(self):
         super(C,self).__init__()
         print("This is in C class")
 
     def feature2(self):
-        print("This is feature 2")
+        print("This is feature main")
 
 
 a1 = C()
+a1.feature2()

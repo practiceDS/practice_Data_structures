@@ -6,5 +6,7 @@ s4 = input("Marks of student 4: ")
 s5 = input("Marks of student 5: ")
 s6 = input("Marks of student 6: ")
 marks = [s1,s2,s3,s4,s5,s6]
-marks.sort()
+#marks.sort()
+new_list = sorted(marks)
 print(marks)
+print(new_list)

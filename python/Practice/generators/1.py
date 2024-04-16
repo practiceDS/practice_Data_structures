@@ -2,7 +2,7 @@ def generator():
   print("Hello")
   yield 5
 
-  return
+ # return
 
   print("Hi")
   yield 10
