@@ -1,4 +1,4 @@
-# Genrate random numbers in Python
+# Generate random numbers in Python
 
 import random
 
